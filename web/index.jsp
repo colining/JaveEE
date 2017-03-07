@@ -11,9 +11,9 @@
     <title>$Title$111</title>
   </head>
   <body>
-  <form method= "get"action = "test">
+  <form method= "get"action = "OutputInfo">
     用户名 ： <input name="username" /> <br>
-    口令：<input name="password">  <br>
+    口令：<input type="password" name="password">  <br>
     <input type="submit" value="submit">
   </form>
   </body>
