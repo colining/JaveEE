@@ -11,7 +11,7 @@
     <title>$Title$111</title>
   </head>
   <body>
-  <form method= "get"action = "OutputInfo">
+  <form method= "get"action = "LoginServlet">
     用户名 ： <input name="username" /> <br>
     口令：<input type="password" name="password">  <br>
     <input type="submit" value="submit">
