@@ -7,6 +7,11 @@
         <element id="directory" name="classes">
           <element id="module-output" name="test2" />
         </element>
+        <element id="directory" name="lib">
+          <element id="file-copy" path="$PROJECT_DIR$/web/lib/commons-io-1.3.2.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/web/lib/commons-fileupload.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/web/lib/commons-fileupload-1.2.1.jar" />
+        </element>
       </element>
     </root>
   </artifact>

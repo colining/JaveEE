@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Calendar;
 
 /**
  * Created by asus on 2017/3/21.
@@ -19,6 +20,7 @@ public class CookieLoginServlet extends HttpServlet {
                 String b1 = request.getParameter("password");
                 if (a1.equals("colin"))
                 {
+
                     Cookie userCookie =  new Cookie("user",a1);
                     userCookie.setMaxAge(-1);
                     response.addCookie(userCookie);
