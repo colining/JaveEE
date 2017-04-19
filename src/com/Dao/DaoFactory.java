@@ -8,23 +8,42 @@ import java.util.Properties;
  * Created by asus on 2017/4/18.
  */
 public class DaoFactory {
-    String name = null;
-    private DaoFactory()
-    {
+    private static String classname = null;
+    private  static Properties properties = null;
 
+    private DaoFactory() {
+        /*
+        不可实例化
+         */
     }
-    static
-    {
-        InputStream inputStream = DaoFactory.class.getClassLoader().getResourceAsStream("db.properties");
-        Properties properties = new Properties();
+    /*
+    工厂加载配置文件
+     */
+    static {
+        InputStream inputStream = DaoFactory.class.getClassLoader().getResourceAsStream("Daoconfig.properties");
+        properties = new Properties();
         try {
             properties.load(inputStream);
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-    public static void  main(String []arg)
-    {
 
+    }
+    /*
+    进行类的实例化
+     */
+    public static Object newIntance(String name)
+    {
+        try {
+            classname = properties.getProperty(name);
+            return Class.forName(classname).newInstance();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

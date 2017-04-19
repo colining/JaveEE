@@ -61,16 +61,50 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public int insertUser(Users users) {
+        try {
+            String sql = "insert into users(userid,username,userage,gender,birthday,address ) values(?,?,?,?,?,?)";
+            Connection connection = JDBCUtils.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, String.valueOf(users.getUserId()));
+            preparedStatement.setString(2,users.getUsername());
+            preparedStatement.setString(3, String.valueOf(users.getUserage()));
+            preparedStatement.setString(4, String.valueOf(users.getGender()));
+            preparedStatement.setString(5, String.valueOf(users.getBirthday()));
+            preparedStatement.setString(6,users.getAddress());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return 0;
     }
 
     @Override
     public int update(Users users) {
+        try {
+            String sql = "update users set username = ? where userid = ?";
+            Connection connection = JDBCUtils.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,users.getUsername());
+            preparedStatement.setString(2, String.valueOf(users.getUserId()));
+            System.out.println(preparedStatement.toString());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return 0;
     }
 
     @Override
     public int delete(Users users) {
+        try {
+            String sql = "delete from users where userid = ?";
+            Connection connection = JDBCUtils.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, String.valueOf(users.getUserId()));
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return 0;
     }
 }

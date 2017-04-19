@@ -71,8 +71,6 @@ public class Users {
         {
 
             Users a= (Users)obj;
-            System.out.println(a.getAddress());
-            System.out.println(a.getAddress());
             if (a.getUserId() ==this.getUserId()
                     &&a.getUserage()==this.getUserage()
                     &&a.getGender()==(this.getGender())

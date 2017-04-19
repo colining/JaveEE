@@ -20,33 +20,31 @@ import static org.junit.Assert.*;
  * Created by asus on 2017/4/18.
  */
 public class UserDaoImpTest {
-    UserDao userDaoImp = new UserDaoImp();
-    Properties properties = new Properties();
-    InputStream in= UserDaoImpTest.class.getResourceAsStream("db.properties");
-    String databse;
+    UserDao userDao = null;
+
     @Before
     public void setUp() throws Exception {
-//        try {
-//            properties.load(in);
-//           databse = properties.getProperty(databse);
-//        } catch (IOException e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//        }
+        //向下转型
+        userDao = (UserDao) DaoFactory.newIntance("UserDao");
     }
 
     @After
     public void tearDown() throws Exception {
 
     }
+    /*
+    查询全部用户
+     */
     @Test
     public void findUsers() throws Exception {
         ArrayList<Users> arrayList = new ArrayList<>();
-        arrayList = userDaoImp.findUsers();
+        arrayList = userDao.findUsers();
         System.out.println(arrayList);
-        System.out.println(databse);
-    }
 
+    }
+    /*
+    找到某一个特定的用户
+     */
     @Test
     public void findUser() throws Exception {
         Users users = new Users();
@@ -56,27 +54,51 @@ public class UserDaoImpTest {
         users.setGender(0);
         users.setAddress("cugb");
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
-//        users.setBirthday(simpleDateFormat.parse("1996/01/26"));
-//        System.out.println(simpleDateFormat.parse("1996/01/26").toString());
-//        System.out.println(simpleDateFormat.format(new Date(96, 00, 26)));
         java.sql.Date date = new java.sql.Date(96,00,26);
         users.setBirthday(date);
-        System.out.println(userDaoImp.findUser(users));
+        System.out.println(userDao.findUser(users));
     }
 
+    /*
+    插入用户
+     */
     @Test
     public void insertUser() throws Exception {
-
+        Users users = new Users();
+        users.setUserId(3);
+        users.setUsername("zhangsan");
+        users.setUserage(21);
+        users.setGender(1);
+        users.setAddress("tqinghua");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        java.sql.Date date = new java.sql.Date(96,00,26);
+        users.setBirthday(date);
+        userDao.insertUser(users);
     }
-
+    /*
+    修改用户
+     */
     @Test
     public void update() throws Exception {
-
+        Users users = new Users();
+        users.setUserId(3);
+        users.setUsername("lisi");
+        users.setUserage(21);
+        users.setGender(1);
+        users.setAddress("tqinghua");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        java.sql.Date date = new java.sql.Date(96,00,26);
+        users.setBirthday(date);
+        userDao.update(users);
     }
-
+    /*
+    删除用户
+     */
     @Test
     public void delete() throws Exception {
-
+        Users users = new Users();
+        users.setUserId(3);
+        userDao.delete(users);
     }
 
 }
